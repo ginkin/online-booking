@@ -1,0 +1,72 @@
+<html>
+	<head>
+		<title>Personal Account</title>
+		<script type="text/javascript" language="javascript" src="/wordpress/wp-includes/js/jquery/jquery.js"></script>
+		<script type="text/javascript" language="javascript">
+
+			function func(){
+				var url="spm-register.php";
+				var data = {
+					password: document.getElementById("password").value,
+					email: document.getElementById("email").value,
+					name: document.getElementById("name").value,
+					address: document.getElementById("address").value,
+					phone: document.getElementById("phone").value,
+					info: document.getElementById("info").value,
+				};
+				jQuery.ajax({
+					    type: "post",
+					    url: url,
+					    data: data,
+					    dataType: "text",
+					    success: function(msg){
+					    	alert("Restration succeed! You can login in.");
+					    	location.href='/wordpress/login';
+					    },
+					    error:function(msg){
+					    	alert(msg);
+					    }
+					});
+			}
+
+			
+		</script>
+	</head>
+	<body background='https://a1industrialtrucks.co.uk/wp-content/uploads/2018/11/webplunder-background-image-technology-online-website-solutions.jpg'>
+		<div>
+			<input type='hidden' id='user_id' name='user_id'>
+			<table align='center' style='border-width: 1px;'>
+				<tbody>
+					<tr>
+						<td>Name:</td>
+						<td><input style='width:300px' type='text' id='name' name='name'></td>
+					</tr>
+					<tr>
+						<td>Home address:</td>
+						<td><input style='width:300px' type='text' id='address' name='address'></td>
+					</tr>
+					<tr>
+						<td>Phone number:</td>
+						<td><input style='width:300px' type='text' id='phone' name='phone'></td>
+					</tr>
+					<tr>
+						<td>Email address:</td>
+						<td><input style='width:300px' type='text' id='email' name='email'></td>
+					</tr>
+					<tr>
+						<td>Password:</td>
+						<td><input style='width:300px' type='text' id='password' name='password'></td>
+					</tr>
+					<tr>
+						<td>Extra information</td>
+						<td><input style='width:300px' type='text' id='info' name='info'></td>
+					</tr>
+					<tr>
+						<td colspan=2 align='center'><button align='center' type='button' class='btn' name='register' id='register' onclick="func()">Register</button></td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+	</body>
+</html>

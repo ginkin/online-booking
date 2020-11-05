@@ -1,0 +1,155 @@
+<html>
+	<head>
+		<title>Personal Account</title>
+	</head>
+	<body background='https://a1industrialtrucks.co.uk/wp-content/uploads/2018/11/webplunder-background-image-technology-online-website-solutions.jpg'>
+		<div>
+			<input type='hidden' id='user_id' name='user_id'>
+			<table align='center' border='1'>
+				<tbody name='services' id='services'>
+					<tr>
+						<td colspan="2">
+						<input type='text' name='new_service' id='new_service'>
+						<input type='text' name='charge' id='charge'>
+						<button type='button' class='btn' name='add' id='add' onclick="func()">Add</button>
+						</td>
+					</tr>
+					<tr>
+						<td>service name</td>
+						<td>charge</td>
+					</tr>
+				</tbody>
+			</table>
+			
+		</div>
+		<div>
+			<table align='center' border='1'>
+				<tbody name='appointments' id='appointments'>
+					<tr>
+						<td colspan="8" align='center'>Appointments</td>
+					</tr>
+					<tr>
+						<td>Name</td>
+						<td>Phone</td>
+						<td>Email</td>
+						<td>Service</td>
+						<td>Date</td>
+						<td>Time</td>
+						<td>Location</td>
+						<td>Message</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<script type="text/javascript" language="javascript" src="/wordpress/wp-includes/js/jquery/jquery.js"></script>
+		<script type="text/javascript" language="javascript">
+			(function (){
+				jQuery.ajax({
+				    type: "post",
+				    url: "spm-service.php",
+				    dataType: "json",
+				    success: function(msg){
+				    	var data=eval("("+msg+")");
+				    	var table = document.getElementById("services");
+				    	for (var key in data){
+				    		var row = document.createElement("tr");
+				    		var column = document.createElement("td");
+				    		var text = document.createTextNode(data[key].service_name);
+				    		column.appendChild(text);
+				    		row.appendChild(column);
+				    		column = document.createElement("td");
+				    		text = document.createTextNode(data[key].charge);
+				    		column.appendChild(text);
+				    		row.appendChild(column);
+				    		table.appendChild(row);
+				    	}
+				    	jQuery.ajax({
+						    type: "post",
+						    url: "spm-appointment.php",
+						    dataType: "json",
+						    success: function(mes){
+						    	var data2=eval("("+mes+")");
+						    	var table2 = document.getElementById("appointments");
+						    	for (var key2 in data2){
+						    		var row2 = document.createElement("tr");
+						    		var column2 = document.createElement("td");
+						    		var text2 = document.createTextNode(data2[key2].name);
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+
+						    		column2 = document.createElement("td");
+						    		text2 = document.createTextNode(data2[key2].phone);
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+
+						    		column2 = document.createElement("td");
+						    		text2 = document.createTextNode(data2[key2].email);
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+
+						    		column2 = document.createElement("td");
+						    		text2 = document.createTextNode(data2[key2].service);
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+
+						    		column2 = document.createElement("td");
+						    		text2 = document.createTextNode(data2[key2].date);
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+
+						    		column2 = document.createElement("td");
+						    		text2 = document.createTextNode(data2[key2].time+":00");
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+
+						    		column2 = document.createElement("td");
+						    		text2 = document.createTextNode(data2[key2].location);
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+
+						    		column2 = document.createElement("td");
+						    		text2 = document.createTextNode(data2[key2].message);
+						    		column2.appendChild(text2);
+						    		row2.appendChild(column2);
+						    		table2.appendChild(row2);
+						    	}
+
+						    },
+						    error:function(msg2){
+						      alert( JSON.stringify(msg2));
+						      location.href='/wordpress/login';
+						    }
+						});
+				    },
+				    error:function(msg){
+				      alert( JSON.stringify(msg));
+				      location.href='/wordpress/login';
+				    }
+				});				
+			})()
+
+			function func(){
+				var url="spm-add_service.php";
+				var data = {
+					new_service: document.getElementById("new_service").value,
+					charge: document.getElementById("charge").value,
+				};
+				jQuery.ajax({
+					    type: "post",
+					    url: url,
+					    data: data,
+					    dataType: "text",
+					    success: function(msg){
+					    	alert("Successfully Added!")
+					    	location.reload();
+
+					    },
+					    error:function(msg){
+					    	alert(msg);
+					    }
+					});
+			}
+		</script>
+	</body>
+</html>
