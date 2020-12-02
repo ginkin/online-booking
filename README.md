@@ -1,4 +1,4 @@
-his system is built on PHPstudy and wordPress.
+This system is built on PHPstudy and wordPress.
 
 The file listed below is written by my own.
 
