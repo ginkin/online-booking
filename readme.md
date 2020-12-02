@@ -1,8 +1,8 @@
-<font color=red>This system is built on PHPstudy and wordPress.
+<font color=red>This system is built on PHPstudy and wordPress.</font>
 
 The file listed below is written by my own.
 
-</font>
+
 
 
 spm-add_service.php
