@@ -1,4 +1,4 @@
-<font color=red>This system is built on PHPstudy and wordPress.</font>
+#####This system is built on PHPstudy and wordPress.
 
 The file listed below is written by my own.
 
